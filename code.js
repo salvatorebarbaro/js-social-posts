@@ -19,6 +19,7 @@ const post = [
     },
   ];
 
+  const container_row=document.querySelector("#container_post");
 //   creo gli elementi nel html tramite questo for 
   for( let i=0;i<post.length;i++)
   {
@@ -26,13 +27,33 @@ const post = [
     const singlePostElement= document.createElement("section");
     // assegno classe col all'elemento cosi da poter strutturare con bootstrap
     singlePostElement.className="col"
-    // stampo i dati
-    console.log(singlePostElement)
+    // assegno classi a singlePostElement
+    singlePostElement.classList.add("bg-white")
+//inserisco il contenuto
+singlePostElement.innerHTML = `
+<div>
+    <div id="container_head" class="d-flex gap-3 my-3 ">
+        <img class="border rounded-5  size_img" src=./img/persona${[i+1]}.jfif>
+        <div id="container_head_text" class="d-flex flex-column ">
+            <h2 class="mb-1">${post[i].nome_e_cognome}</h2>
+            <span>${post[i].data}</span>
+        </div>
+    </div>
+ <p>${post[i].testo}</p>
+</div>
+`;
+
+
+    // appendo alla row
+    container_row.appendChild(singlePostElement);
+   
+    
+
+    //   prendo i dati dell'array
+    for(let dati in post[i])
+    {
+    // abbiamo preso i dati dei post
+    console.log(post[i][dati])
+    }    
   }
 
-//   prendo i dati dell'array
-  for(let dati in post)
-  {
-    // abbiamo preso i dati dei post
-    console.log(post[dati])
-  }
