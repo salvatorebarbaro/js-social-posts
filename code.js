@@ -28,23 +28,72 @@ const post = [
     // assegno classe col all'elemento cosi da poter strutturare con bootstrap
     singlePostElement.className="col"
     // assegno classi a singlePostElement
-    singlePostElement.classList.add("bg-white")
-    // inserisco il percorso delle immagini da qui per esercitarsi
-    post[i].img=`./img/giornata${i+1}.jfif`
+    singlePostElement.classList.add("bg-white","border","rounded-2")
+    // fatto esclusivamente per esercitarsi     // 
+        // inserisco il percorso delle immagini da qui per esercitarsi
+        post[i].img=`./img/giornata${i+1}.jfif`;
+        // inserisco nuova proprietà all'interno dell'oggetto
+        post[i].like=[i+Math.floor(Math.random()* 100000)];
+    // fine
     //inserisco il contenuto
     singlePostElement.innerHTML = `
 <div>
     <div id="container_head" class="d-flex gap-3 my-3 ">
         <img class="border rounded-5  size_img" src=./img/persona${[i+1]}.jfif>
         <div id="container_head_text" class="d-flex flex-column ">
+            // inserisco il titolo in maniera dinamica
             <h2 class="mb-1">${post[i].nome_e_cognome}</h2>
             <span>${post[i].data}</span>
         </div>
     </div>
  <p class="fw-semibold">${post[i].testo}</p>
  <img class="img-fluid mb-3 border rounded-1 " src="${post[i].img}" alt="">
+ <div id="containerButton" class="d-flex justify-content-around mb-4">
+    <button type="button" class="btn btn-primary addLike"> Like <i class="fa-regular fa-thumbs-up"></i></button>
+     <button type="button" id="contatore" class="btn btn-light border border-black" disabled>${post[i].like}</button>
+ </div>
 </div>
 `;
+    // non essendo nel don mi sono ricercato l'elemento all'inenro del mio col
+    const buttonsLike=singlePostElement.querySelector(".addLike");
+    // inizializzo variabile booleana
+    let likeStatus=true;
+    // ascoltatore inserito
+    buttonsLike.addEventListener("click",() => 
+    {
+        
+        if(!likeStatus)
+            {
+                // Se il pulsante "like" è disattivato, esegui le seguenti operazioni:
+
+                // Incrementa il conteggio dei "like" di 1
+                post[i].like = Number(post[i].like) + 1;
+
+                // Seleziona l'elemento HTML del contatore dei "like"
+                let contatore = singlePostElement.querySelector("#contatore");
+
+                // Aggiorna il contenuto del contatore dei "like" con il nuovo valore
+                contatore.innerHTML = `${post[i].like}`;
+            }
+            else
+            {
+                // Se il pulsante "like" è attivato, esegui le seguenti operazioni:
+
+                // Decrementa il conteggio dei "like" di 1
+                post[i].like = Number(post[i].like) - 1;
+
+                // Seleziona l'elemento HTML del contatore dei "like"
+                let contatore = singlePostElement.querySelector("#contatore");
+
+                // Aggiorna il contenuto del contatore dei "like" con il nuovo valore
+                contatore.innerHTML = `${post[i].like}`;
+            }
+
+            // Inverti lo stato del pulsante "like"
+            likeStatus = !likeStatus; 
+
+
+        })
 
 
     // appendo alla row
