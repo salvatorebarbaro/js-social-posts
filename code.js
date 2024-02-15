@@ -9,7 +9,7 @@ const post = [
       nome_e_cognome: "Maria Rossi",
       data: "07/01/2023",
       testo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet aliquam purus. Donec tincidunt leo ac urna tincidunt, eget convallis risus tincidunt. Sed elementum tempus egestas. Nunc velit risus, tincidunt eget massa eget, aliquam ultrices nisi. Fusce aliquam neque eget neque ultrices, eget hendrerit neque ultricies.",
-      img: "https://www.example.com/image.jpg",
+      img: "",
     },
     {
       nome_e_cognome: "Giovanni Verdi",
@@ -29,8 +29,10 @@ const post = [
     singlePostElement.className="col"
     // assegno classi a singlePostElement
     singlePostElement.classList.add("bg-white")
-//inserisco il contenuto
-singlePostElement.innerHTML = `
+    // inserisco il percorso delle immagini da qui per esercitarsi
+    post[i].img=`./img/giornata${i+1}.jfif`
+    //inserisco il contenuto
+    singlePostElement.innerHTML = `
 <div>
     <div id="container_head" class="d-flex gap-3 my-3 ">
         <img class="border rounded-5  size_img" src=./img/persona${[i+1]}.jfif>
@@ -39,7 +41,8 @@ singlePostElement.innerHTML = `
             <span>${post[i].data}</span>
         </div>
     </div>
- <p>${post[i].testo}</p>
+ <p class="fw-semibold">${post[i].testo}</p>
+ <img class="img-fluid mb-3 border rounded-1 " src="${post[i].img}" alt="">
 </div>
 `;
 
