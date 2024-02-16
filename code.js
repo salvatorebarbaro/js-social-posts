@@ -17,6 +17,15 @@ const post = [
       testo: "Proin eget tortor risus. Cras ullamcorper massa sit amet lacus egestas, ac ultrices nisi tincidunt. Nunc accumsan, ipsum sed dignissim feugiat, risus nisl egestas massa, in pulvinar neque leo ac lectus. Fusce aliquam risus sit amet sapien ultrices, eget hendrerit neque ultricies.",
       img: "",
   },
+  {
+    nome_e_cognome: "Marco Rossi",
+    data: "10/21/2023",
+    testo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet ipsum ut quam consequat volutpat non ut diam. Sed cursus sem nec nunc faucibus, vitae pharetra quam tincidunt.",
+    img: "marco_rossi.jpg",
+    like: 123,
+    id: 2
+  }
+  
 ];
 
 const container_row = document.querySelector("#container_post");
@@ -43,7 +52,7 @@ for (let i = 0; i < post.length; i++) {
           <img class="border rounded-5 size_img" src=./img/persona${[i+1]}.jfif>
               <div id="container_head_text" class="d-flex flex-column ">
                   <h2 class="mb-1">${post[i].nome_e_cognome}</h2>
-                //   richiamo direttamente la funzione nel codice passandogli il valore.
+                <!-- richiamo direttamente la funzione nel codice passandogli il valore.--> 
                   <span>${dateIta(post[i].data)}</span>
               </div>
           </div>
@@ -95,6 +104,7 @@ for (let i = 0; i < post.length; i++) {
 
   // Aggiungo il singlePostElement al container
   container_row.appendChild(singlePostElement);
+  console.log(`./img/persona${[i+1]}.jfif`)
 }
 
 
@@ -102,7 +112,9 @@ function dateIta(date)
 {
     // funzione usata per trasformare la data dall'inglese a italiano 
     const dateinitaliano=  new Date(date).toLocaleDateString('it-IT', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
-
+    
     return dateinitaliano;
+    
    
 }
+
