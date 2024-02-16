@@ -43,7 +43,8 @@ for (let i = 0; i < post.length; i++) {
           <img class="border rounded-5 size_img" src=./img/persona${[i+1]}.jfif>
               <div id="container_head_text" class="d-flex flex-column ">
                   <h2 class="mb-1">${post[i].nome_e_cognome}</h2>
-                  <span>${post[i].data}</span>
+                //   richiamo direttamente la funzione nel codice passandogli il valore.
+                  <span>${dateIta(post[i].data)}</span>
               </div>
           </div>
           <p class="fw-semibold">${post[i].testo}</p>
@@ -94,4 +95,14 @@ for (let i = 0; i < post.length; i++) {
 
   // Aggiungo il singlePostElement al container
   container_row.appendChild(singlePostElement);
+}
+
+
+function dateIta(date)
+{
+    // funzione usata per trasformare la data dall'inglese a italiano 
+    const dateinitaliano=  new Date(date).toLocaleDateString('it-IT', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+
+    return dateinitaliano;
+   
 }
